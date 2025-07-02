@@ -1,1 +1,502 @@
 # my-portfolio
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio الكتابة - نماذج احترافية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .sample-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sample-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .sample-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .sample-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .sample-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .sample-title {
+            flex: 1;
+        }
+
+        .sample-title h2 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .sample-type {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .sample-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .sample-content h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .sample-content h4 {
+            color: #34495e;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .sample-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .sample-content ul {
+            margin: 1rem 0;
+            padding-right: 1.5rem;
+        }
+
+        .sample-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .sample-content li::before {
+            content: '✨';
+            position: absolute;
+            right: -1.5rem;
+            top: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+            margin: 1rem 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .cta-box strong {
+            font-size: 1.1rem;
+        }
+
+        .social-post {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .social-post::before {
+            content: '📱';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-right: 3px solid #667eea;
+        }
+
+        .feature-item h5 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            color: white;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .sample-card {
+                padding: 1.5rem;
+            }
+            
+            .product-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .animation {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✍️ Portfolio الكتابة</h1>
+            <p>نماذج احترافية من أعمال الكتابة المتنوعة</p>
+            <div class="stats">
+                <div class="stat-item animation">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">نماذج كتابية</span>
+                </div>
+                <div class="stat-item animation">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">محتوى أصلي</span>
+                </div>
+                <div class="stat-item animation">
+                    <span class="stat-number">Pro</span>
+                    <span class="stat-label">جودة احترافية</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- نموذج 1: مقال عام -->
+            <div class="sample-card animation">
+                <div class="sample-header">
+                    <div class="sample-icon">📖</div>
+                    <div class="sample-title">
+                        <h2>فوائد القراءة اليومية</h2>
+                        <span class="sample-type">مقال عام</span>
+                    </div>
+                </div>
+                <div class="sample-content">
+                    <h4>المقدمة</h4>
+                    <p>تُعد القراءة من أقدم وسائل اكتساب المعرفة والثقافة التي عرفتها البشرية، وقد أثبتت الدراسات الحديثة أن جعل القراءة عادة يومية يمكن أن يُحدث تحولاً جذرياً في حياة الإنسان. في عصرنا الرقمي المتسارع، تبرز أهمية القراءة اليومية كضرورة حتمية لمن يسعى إلى النمو الشخصي والفكري.</p>
+
+                    <h4>تطوير القدرات العقلية والمعرفية</h4>
+                    <p>تساهم القراءة اليومية بشكل كبير في تحسين وظائف الدماغ وتطوير القدرات المعرفية. عندما نقرأ، نحفز مناطق مختلفة في الدماغ مسؤولة عن التحليل والتفكير النقدي والتخيل، مما يعزز من مرونة العقل وقدرته على حل المشكلات. كما تُحسن القراءة المنتظمة من الذاكرة والتركيز، حيث يتدرب الدماغ على استيعاب المعلومات وربطها ببعضها البعض.</p>
+
+                    <h4>الفوائد النفسية والعاطفية</h4>
+                    <p>بالإضافة إلى الفوائد المعرفية، تقدم القراءة اليومية فوائد نفسية وعاطفية مهمة. فالقراءة تُعتبر وسيلة ممتازة للاسترخاء والهروب من ضغوط الحياة اليومية، حيث تساعد على تقليل مستويات التوتر والقلق. كما تُوسع القراءة من آفاق الفهم الإنساني وتزيد من القدرة على التعاطف مع الآخرين.</p>
+
+                    <h4>التأثير على النجاح المهني</h4>
+                    <p>تلعب القراءة اليومية دوراً محورياً في تحقيق النجاح على المستوى المهني. فالأشخاص الذين يقرؤون بانتظام يكونون أكثر اطلاعاً على التطورات في مجالاتهم المهنية، مما يمنحهم ميزة تنافسية في سوق العمل. كما تساعد القراءة المتنوعة في تطوير مهارات القيادة واتخاذ القرارات.</p>
+
+                    <div class="highlight">
+                        <h4>الخاتمة</h4>
+                        <p>في الختام، تُعد القراءة اليومية استثماراً ذكياً في الذات لا يقدر بثمن. لذلك، من المهم أن نجعل القراءة جزءاً لا يتجزأ من روتيننا اليومي، حتى لو كان ذلك لفترة قصيرة كل يوم. فالثبات على هذه العادة الإيجابية سيؤتي ثماره على المدى الطويل.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- نموذج 2: وصف منتج -->
+            <div class="sample-card animation">
+                <div class="sample-header">
+                    <div class="sample-icon">⌚</div>
+                    <div class="sample-title">
+                        <h2>ساعة FitPro الذكية</h2>
+                        <span class="sample-type">وصف منتج</span>
+                    </div>
+                </div>
+                <div class="sample-content">
+                    <p><strong>اكتشف مستقبل اللياقة البدنية مع ساعة FitPro الذكية!</strong></p>
+                    
+                    <p>هل تبحث عن رفيق مثالي لرحلتك نحو نمط حياة أكثر صحة ونشاطاً؟ ساعة FitPro الذكية هي الحل الأمثل الذي يجمع بين التقنية المتطورة والتصميم الأنيق ليمنحك تجربة فريدة في عالم اللياقة البدنية.</p>
+
+                    <h4>الميزات الرئيسية:</h4>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <h5>💓 مراقبة معدل ضربات القلب</h5>
+                            <p>تتبع دقيق على مدار 24 ساعة لمعدل ضربات القلب مع تنبيهات ذكية</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>🏃 تتبع الأنشطة الرياضية</h5>
+                            <p>أكثر من 50 نشاطاً رياضياً مع GPS مدمج لتتبع المسارات</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>😴 مراقبة جودة النوم</h5>
+                            <p>تحليل مفصل لمراحل النوم مع نصائح لتحسين جودة الراحة</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>📱 اتصال ذكي</h5>
+                            <p>استقبال المكالمات والرسائل مباشرة من معصمك</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>🔋 بطارية طويلة المدى</h5>
+                            <p>تصل إلى 7 أيام من الاستخدام المتواصل بشحنة واحدة</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>💧 مقاومة الماء</h5>
+                            <p>مقاومة للماء حتى عمق 50 متر، مثالية للسباحة</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <h4>لماذا تختار ساعة FitPro؟</h4>
+                        <ul>
+                            <li>تصميم عصري وأنيق يناسب جميع المناسبات</li>
+                            <li>واجهة سهلة الاستخدام مع شاشة عالية الوضوح</li>
+                            <li>تطبيق مجاني يقدم تحليلات مفصلة وخطط تدريب شخصية</li>
+                            <li>متوافقة مع أنظمة iOS و Android</li>
+                            <li>ضمان شامل لمدة سنتين</li>
+                        </ul>
+                    </div>
+
+                    <div class="cta-box">
+                        <strong>🎯 احصل على ساعة FitPro الآن بسعر خاص 299 ريال بدلاً من 399 ريال!</strong><br>
+                        <em>العرض محدود حتى نهاية الشهر - شحن مجاني لجميع أنحاء المملكة</em>
+                    </div>
+                </div>
+            </div>
+
+            <!-- نموذج 3: منشور سوشيال ميديا -->
+            <div class="sample-card animation">
+                <div class="sample-header">
+                    <div class="sample-icon">📱</div>
+                    <div class="sample-title">
+                        <h2>5 طرق لزيادة الإنتاجية</h2>
+                        <span class="sample-type">منشور إنستغرام</span>
+                    </div>
+                </div>
+                <div class="sample-content">
+                    <div class="social-post">
+                        <p><strong>🚀 هل تشعر أن يومك يمر دون إنجاز حقيقي؟</strong></p>
+                        
+                        <p>كلنا نمر بأيام نشعر فيها بأننا نجري في المكان نفسه! 😤 لكن الخبر الجيد أن زيادة الإنتاجية ليست سحراً، بل مهارة يمكن تعلمها وتطويرها.</p>
+
+                        <p><strong>إليك 5 طرق مجربة ستغير طريقة عملك:</strong></p>
+
+                        <h4>1️⃣ تقنية البومودورو</h4>
+                        <p>اعمل لـ 25 دقيقة، ثم استرح 5 دقائق. هذه التقنية البسيطة ستحسن تركيزك بشكل مذهل! 🍅</p>
+
+                        <h4>2️⃣ قاعدة الـ 2 دقيقة</h4>
+                        <p>أي مهمة تحتاج أقل من دقيقتين، انجزها فوراً! لا تؤجلها لـ "لاحقاً" 📝</p>
+
+                        <h4>3️⃣ حدد 3 أولويات يومياً</h4>
+                        <p>بدلاً من قائمة مهام طويلة، ركز على 3 مهام مهمة فقط. الجودة أهم من الكمية! ✨</p>
+
+                        <h4>4️⃣ أغلق الإشعارات</h4>
+                        <p>الهاتف هو أكبر مشتت للانتباه! ضعه في الوضع الصامت أثناء العمل 📵</p>
+
+                        <h4>5️⃣ خذ فترات راحة منتظمة</h4>
+                        <p>العقل يحتاج راحة ليعمل بكفاءة. امشِ قليلاً، اشرب الماء، تنفس بعمق 🧘‍♀️</p>
+
+                        <div class="highlight">
+                            <p><strong>💡 نصيحة إضافية:</strong> ابدأ بتطبيق طريقة واحدة فقط لمدة أسبوع، ثم أضف الثانية. التغيير التدريجي أكثر استدامة!</p>
+                        </div>
+
+                        <div class="cta-box">
+                            <strong>🔥 أي من هذه الطرق ستجرب اليوم؟</strong><br>
+                            <strong>شاركنا في التعليقات وتابعنا للمزيد من النصائح العملية! 👇</strong><br><br>
+                            <em>#الإنتاجية #تطوير_الذات #النجاح #تنظيم_الوقت #نصائح_عملية</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header" style="margin-top: 3rem; padding: 2rem 0;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">📧 للتواصل والاستفسار</h2>
+            <p>متخصص في كتابة المحتوى الرقمي والتسويقيAchraf Elkhouzari </p>
+            <p style="font-size: 1rem; opacity: 0.8; margin-top: 0.5rem;">
+                📧 achrafelkhauzari@gmail.com.com | 📱 +212 622529091
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // إضافة تأثيرات تفاعلية
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.sample-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // تأثير تموج عند النقر
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(102, 126, 234, 0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = (e.clientX - card.offsetLeft) + 'px';
+                    ripple.style.top = (e.clientY - card.offsetTop) + 'px';
+                    ripple.style.width = ripple.style.height = '20px';
+                    
+                    card.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+        
+        // CSS للتأثير المتموج
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
